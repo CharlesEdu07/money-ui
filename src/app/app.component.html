@@ -21,4 +21,15 @@
       <button pButton type="submit" label="Pesquisar"></button>
     </div>
   </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="postings">
+        <p-column field="person" header="Pessoa"></p-column>
+        <p-column field="postingDescription" header="Descrição"></p-column>
+        <p-column field="dueDate" header="Vencimento" styleClass="col-date"></p-column>
+        <p-column field="paymentDate" header="Pagamento" styleClass="col-date"></p-column>
+        <p-column field="postingValue" header="Valor" styleClass="col-postingValue"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
 </div>

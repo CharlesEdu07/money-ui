@@ -14,3 +14,13 @@ label {
     margin: 0 auto;
   }
 }
+
+.col-postingValue {
+  width: 120px;
+  text-align: right;
+}
+
+.col-date {
+  width: 120px;
+  text-align: center;
+}
