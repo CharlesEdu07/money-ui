@@ -21,6 +21,7 @@
       <button pButton type="submit" label="Pesquisar"></button>
     </div>
   </div>
+
   <div class="ui-g">
     <div class="ui-g-12">
       <p-dataTable [value]="postings">
@@ -28,8 +29,22 @@
         <p-column field="postingDescription" header="Descrição"></p-column>
         <p-column field="dueDate" header="Vencimento" styleClass="col-date"></p-column>
         <p-column field="paymentDate" header="Pagamento" styleClass="col-date"></p-column>
-        <p-column field="postingValue" header="Valor" styleClass="col-postingValue"></p-column>
+        <p-column field="postingValue" header="Valor" styleClass="col-postingValue">
+          <ng-template let-post="rowData" pTemplate="body">
+            <span [style.color]="post.postingType === 'DESPESA' ? 'red' : 'blue'">{{ post.postingValue }}</span>
+          </ng-template>
+        </p-column>
+        <p-column styleClass="col-action">
+          <ng-template pTemplate="body">
+            <a pButton icon="fa-pencil" href=""></a>
+            <button pButton icon="fa-trash" href=""></button>
+          </ng-template>
+        </p-column>
       </p-dataTable>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton type="submit" label="Novo Lançamento"></a>
     </div>
   </div>
 </div>
