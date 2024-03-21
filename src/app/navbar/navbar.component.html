@@ -2,8 +2,15 @@
   <div class="container">
     <div class="ui-g">
       <div class="ui-g-12">
-        <a href="javascript:;" class="navbar-toggle"><i class="fa fa-bars"></i></a>
+        <a href="javascript:;" class="navbar-toggle" (click)="showMenu = !showMenu"><i class="fa fa-bars"></i></a>
       </div>
     </div>
   </div>
+
+  <ul class="navbar-menu" [hidden]="!showMenu">
+    <li class="navbar-user">Hally Santos</li>
+    <li class="navbar-menuItem"><a href="#">Lançamentos</a></li>
+    <li class="navbar-menuItem"><a href="#">Pessoa</a></li>
+    <li class="navbar-menuItem"><a href="#">Logout</a></li>
+  </ul>
 </nav>
