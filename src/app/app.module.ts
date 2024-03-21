@@ -7,10 +7,12 @@ import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 
 import { AppComponent } from './app.component';
+import { PostingSearchComponent } from './posting-search/posting-search.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostingSearchComponent
   ],
   imports: [
     BrowserModule,

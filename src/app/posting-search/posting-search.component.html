@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Lançamentos</h1>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <label for="description">Descrição</label>
+      <input pInputText type="text" id="description">
+    </div>
+
+    <div class="ui-g-12">
+      <label style="display: block" for="from">Vencimento</label>
+      <input style="width: 95px;" pInputText type="text" id="from">
+
+      <label for="to">Até</label>
+      <input pInputText type="text" id="to">
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Pesquisar"></button>
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="postings" [paginator]="true" [rows]="5" [responsive]="true">
+        <p-column field="person" header="Pessoa"></p-column>
+        <p-column field="postingDescription" header="Descrição"></p-column>
+        <p-column field="dueDate" header="Vencimento" styleClass="col-date"></p-column>
+        <p-column field="paymentDate" header="Pagamento" styleClass="col-date"></p-column>
+        <p-column field="postingValue" header="Valor" styleClass="col-postingValue">
+          <ng-template let-post="rowData" pTemplate="body">
+            <span [style.color]="post.postingType === 'DESPESA' ? 'red' : 'blue'">{{ post.postingValue }}</span>
+          </ng-template>
+        </p-column>
+        <p-column styleClass="col-action">
+          <ng-template pTemplate="body">
+            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top" href=""></a>
+            <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" href=""></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton type="submit" label="Novo Lançamento"></a>
+    </div>
+  </div>
+</div>
