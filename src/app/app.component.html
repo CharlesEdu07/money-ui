@@ -24,7 +24,7 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="postings">
+      <p-dataTable [value]="postings" [paginator]="true" [rows]="2">
         <p-column field="person" header="Pessoa"></p-column>
         <p-column field="postingDescription" header="Descrição"></p-column>
         <p-column field="dueDate" header="Vencimento" styleClass="col-date"></p-column>
