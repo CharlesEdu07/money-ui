@@ -9,12 +9,14 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { AppComponent } from './app.component';
 import { PostingSearchComponent } from './posting-search/posting-search.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PersonSearchComponent } from './person-search/person-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostingSearchComponent,
-    NavbarComponent
+    NavbarComponent,
+    PersonSearchComponent
   ],
   imports: [
     BrowserModule,
