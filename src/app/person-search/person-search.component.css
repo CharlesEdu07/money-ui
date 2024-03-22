@@ -1,0 +1,7 @@
+.col-status-link {
+  text-decoration: none;
+}
+
+.col-status-link:hover {
+  text-decoration: underline;
+}

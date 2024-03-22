@@ -1,20 +1,12 @@
 <div class="container">
   <div class="ui-g">
     <div class="ui-g-12">
-      <h1>Lançamentos</h1>
+      <h1>Pessoas</h1>
     </div>
 
     <div class="ui-g-12 ui-fluid">
-      <label for="description">Descrição</label>
-      <input pInputText type="text" id="description">
-    </div>
-
-    <div class="ui-g-12">
-      <label style="display: block" for="from">Vencimento</label>
-      <input style="width: 95px;" pInputText type="text" id="from">
-
-      <label for="to">Até</label>
-      <input pInputText type="text" id="to">
+      <label for="personName">Nome</label>
+      <input pInputText type="text" id="personName">
     </div>
 
     <div class="ui-g-12">
@@ -28,7 +20,14 @@
         <p-column field="personName" header="Nome"></p-column>
         <p-column field="city" header="Cidade"></p-column>
         <p-column field="stateAddress" header="Estado"></p-column>
-        <p-column field="active" header="Status"></p-column>
+        <p-column field="active" header="Status">
+          <ng-template let-person="rowData" pTemplate="body">
+            <a class="col-status-link" *ngIf="person.active" pTooltip="Inativar" tooltipPosition="top"
+              href="#">Ativo</a>
+            <a class="col-status-link" *ngIf="!person.active" pTooltip="Ativar" tooltipPosition="top"
+              href="#">Inativo</a>
+          </ng-template>
+        </p-column>
         <p-column styleClass="col-action">
           <ng-template pTemplate="body">
             <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top" href=""></a>
