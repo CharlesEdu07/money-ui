@@ -13,7 +13,7 @@ export class PostingSearchComponent {
     },
     {
       postingType: 'RECEITA', postingDescription: 'Venda de software', dueDate: new Date(2017, 6, 10),
-      paymentDate: '09/06/2017', postingValue: 80000, person: 'Atacado Brasil'
+      paymentDate: new Date(2017, 6, 9), postingValue: 80000, person: 'Atacado Brasil'
     },
     {
       postingType: 'DESPESA', postingDescription: 'Impostos', dueDate: new Date(2017, 7, 20),
@@ -21,7 +21,7 @@ export class PostingSearchComponent {
     },
     {
       postingType: 'DESPESA', postingDescription: 'Mensalidade de escola', dueDate: new Date(2017, 6, 5),
-      paymentDate: '30/05/2017', postingValue: 800, person: 'Escola Abelha Rainha'
+      paymentDate: new Date(2017, 5, 30), postingValue: 800, person: 'Escola Abelha Rainha'
     },
     {
       postingType: 'RECEITA', postingDescription: 'Venda de carro', dueDate: new Date(2017, 8, 18),
@@ -29,7 +29,7 @@ export class PostingSearchComponent {
     },
     {
       postingType: 'DESPESA', postingDescription: 'Aluguel', dueDate: new Date(2017, 7, 10),
-      paymentDate: '09/07/2017', postingValue: 1750, person: 'Casa Nova Imóveis'
+      paymentDate: new Date(9, 7, 30), postingValue: 1750, person: 'Casa Nova Imóveis'
     },
     {
       postingType: 'DESPESA', postingDescription: 'Mensalidade musculação', dueDate: new Date(2017, 7, 13),
