@@ -39,7 +39,8 @@
         </p-column>
         <p-column field="postingValue" header="Valor" styleClass="col-postingValue">
           <ng-template let-post="rowData" pTemplate="body">
-            <span [style.color]="post.postingType === 'DESPESA' ? 'red' : 'blue'">{{ post.postingValue }}</span>
+            <span [style.color]="post.postingType === 'DESPESA' ? 'red' : 'blue'">{{ post.postingValue |
+              currency:'BRL':true:'1.2-2' }}</span>
           </ng-template>
         </p-column>
         <p-column styleClass="col-action">
