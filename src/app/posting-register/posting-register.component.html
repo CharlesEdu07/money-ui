@@ -22,13 +22,24 @@
 
     <div class="ui-fluid ui-g-12 ui-md-9">
       <label for="">Descrição</label>
-      <input pInputText type="text">
+      <input pInputText type="text" name="postingDescription" ngModel #postingDescription="ngModel" required
+        minlength="5">
+
+      <div *ngIf="postingDescription.hasError('required') && postingDescription.touched"
+        class="ui-message ui-messages-error">
+        Informe uma descrição
+      </div>
+
+      <div *ngIf="postingDescription.hasError('minlength') && postingDescription.touched"
+        class="ui-message ui-messages-error">
+        Mínimo de {{ postingDescription.errors.minlength.requiredLength }} caracteres.
+      </div>
     </div>
 
     <div class="ui-fluid ui-g-12 ui-md-3">
       <label for="">Valor</label>
       <input pInputText type="text" placeholder="0,00" currencyMask
-        [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }">
+        [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" name="postingValue" ngModel>
     </div>
 
     <div class="ui-fluid ui-g-12 ui-md-6">
