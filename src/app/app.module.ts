@@ -18,6 +18,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PersonSearchComponent } from './person-search/person-search.component';
 import { PostingRegisterComponent } from './posting-register/posting-register.component';
 import { PostingSearchComponent } from './posting-search/posting-search.component';
+import { PersonRegisterComponent } from './person-register/person-register.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PostingSearchComponent } from './posting-search/posting-search.componen
     PostingSearchComponent,
     NavbarComponent,
     PersonSearchComponent,
-    PostingRegisterComponent
+    PostingRegisterComponent,
+    PersonRegisterComponent
   ],
   imports: [
     BrowserAnimationsModule,
