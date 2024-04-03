@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/components/button/button';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
+import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton';
@@ -37,6 +38,7 @@ import { PersonRegisterComponent } from './person-register/person-register.compo
     CurrencyMaskModule,
     DropdownModule,
     DataTableModule,
+    InputMaskModule,
     InputTextareaModule,
     InputTextModule,
     SelectButtonModule,
