@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posting-register.component.css']
 })
 export class PostingRegisterComponent implements OnInit {
+  postingTypes = [
+    { label: 'Receita', value: 'RECEITA' },
+    { label: 'Despesa', value: 'DESPESA' },
+  ];
 
   constructor() { }
 

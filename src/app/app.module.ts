@@ -7,6 +7,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { PostingRegisterComponent } from './posting-register/posting-register.co
     DataTableModule,
     InputTextareaModule,
     InputTextModule,
+    SelectButtonModule,
     TooltipModule
   ],
   providers: [],

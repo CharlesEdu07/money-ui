@@ -6,13 +6,17 @@
       </div>
     </div>
 
+    <div class="ui-g-12">
+      <p-selectButton [options]="postingTypes" #type></p-selectButton>
+    </div>
+
     <div class="ui-fluid ui-g-6 ui-md-3">
       <label for="">Vencimento</label>
       <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="false" [showIcon]="false"></p-calendar>
     </div>
 
     <div class="ui-fluid ui-g-6 ui-md-3">
-      <label for="">Recebimento</label>
+      <label for="">{{ type.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
       <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="false" [showIcon]="false"></p-calendar>
     </div>
 
