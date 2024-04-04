@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 import { ButtonModule } from 'primeng/components/button/button';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
@@ -16,22 +16,22 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 import { AppComponent } from './app.component';
+import { MessageComponent } from './message/message.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PersonRegisterComponent } from './person-register/person-register.component';
 import { PersonSearchComponent } from './person-search/person-search.component';
 import { PostingRegisterComponent } from './posting-register/posting-register.component';
 import { PostingSearchComponent } from './posting-search/posting-search.component';
-import { PersonRegisterComponent } from './person-register/person-register.component';
-import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostingSearchComponent,
+    MessageComponent,
     NavbarComponent,
+    PersonRegisterComponent,
     PersonSearchComponent,
     PostingRegisterComponent,
-    PersonRegisterComponent,
-    MessageComponent
+    PostingSearchComponent,
   ],
   imports: [
     BrowserAnimationsModule,
