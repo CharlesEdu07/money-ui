@@ -25,15 +25,9 @@
       <input pInputText type="text" name="postingDescription" ngModel #postingDescription="ngModel" required
         minlength="5">
 
-      <div *ngIf="postingDescription.hasError('required') && postingDescription.touched"
-        class="ui-message ui-messages-error">
-        Informe uma descrição
-      </div>
-
-      <div *ngIf="postingDescription.hasError('minlength') && postingDescription.touched"
-        class="ui-message ui-messages-error">
-        Mínimo de {{ postingDescription.errors.minlength.requiredLength }} caracteres.
-      </div>
+      <app-message [control]="postingDescription" error="required" text="Informe uma descrição"></app-message>
+      <app-message [control]="postingDescription" error="minlength"
+        text="Mínimo de {{ postingDescription.errors?.minlength?.requiredLength }} caracteres"></app-message>
     </div>
 
     <div class="ui-fluid ui-g-12 ui-md-3">
@@ -61,6 +55,7 @@
     <div class="ui-g-12">
       <button pButton type="submit" label="Salvar"></button>
       <button pButton type="button" label="Novo" class="ui-button-info"></button>
+
       <a href="javascript:;">Voltar para a pesquisa</a>
     </div>
   </form>
