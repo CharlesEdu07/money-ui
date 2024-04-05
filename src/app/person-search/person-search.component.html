@@ -16,25 +16,7 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="persons" [paginator]="true" [rows]="5" [responsive]="true">
-        <p-column field="personName" header="Nome"></p-column>
-        <p-column field="city" header="Cidade"></p-column>
-        <p-column field="stateAddress" header="Estado"></p-column>
-        <p-column field="active" header="Status">
-          <ng-template let-person="rowData" pTemplate="body">
-            <a class="col-status-link" *ngIf="person.active" pTooltip="Inativar" tooltipPosition="top"
-              href="#">Ativo</a>
-            <a class="col-status-link" *ngIf="!person.active" pTooltip="Ativar" tooltipPosition="top"
-              href="#">Inativo</a>
-          </ng-template>
-        </p-column>
-        <p-column styleClass="col-action">
-          <ng-template pTemplate="body">
-            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top" href=""></a>
-            <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" href=""></button>
-          </ng-template>
-        </p-column>
-      </p-dataTable>
+      <app-person-grid [persons]="persons"></app-person-grid>
     </div>
 
     <div class="ui-g-12">
