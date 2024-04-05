@@ -1,3 +1,26 @@
-<p>
-  posting-grid works!
-</p>
+<p-dataTable [value]="postings" [paginator]="true" [rows]="5" [responsive]="true">
+  <p-column field="person" header="Pessoa"></p-column>
+  <p-column field="postingDescription" header="Descrição"></p-column>
+  <p-column field="dueDate" header="Vencimento" styleClass="col-date">
+    <ng-template let-post="rowData" pTemplate="body">
+      <span>{{ post.dueDate | date:'dd/MM/y' }}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="paymentDate" header="Pagamento" styleClass="col-date">
+    <ng-template let-post="rowData" pTemplate="body">
+      <span>{{ post.paymentDate | date:'dd/MM/y' }}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="postingValue" header="Valor" styleClass="col-postingValue">
+    <ng-template let-post="rowData" pTemplate="body">
+      <span [style.color]="post.postingType === 'DESPESA' ? 'red' : 'blue'">{{ post.postingValue |
+        currency:'BRL':true:'1.2-2' }}</span>
+    </ng-template>
+  </p-column>
+  <p-column styleClass="col-action">
+    <ng-template pTemplate="body">
+      <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top" href=""></a>
+      <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" href=""></button>
+    </ng-template>
+  </p-column>
+</p-dataTable>
