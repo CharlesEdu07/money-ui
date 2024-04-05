@@ -22,6 +22,8 @@ import { PersonRegisterComponent } from './person-register/person-register.compo
 import { PersonSearchComponent } from './person-search/person-search.component';
 import { PostingRegisterComponent } from './posting-register/posting-register.component';
 import { PostingSearchComponent } from './posting-search/posting-search.component';
+import { PostingGridComponent } from './posting-grid/posting-grid.component';
+import { PersonGridComponent } from './person-grid/person-grid.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { PostingSearchComponent } from './posting-search/posting-search.componen
     PersonSearchComponent,
     PostingRegisterComponent,
     PostingSearchComponent,
+    PostingGridComponent,
+    PersonGridComponent,
   ],
   imports: [
     BrowserAnimationsModule,
