@@ -6,13 +6,11 @@ import { PostingsModule } from './postings/postings.module';
 import { PersonsModule } from './persons/persons.module';
 
 import { AppComponent } from './app.component';
-import { MessageComponent } from './message/message.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MessageComponent,
     NavbarComponent,
   ],
   imports: [

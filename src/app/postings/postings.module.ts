@@ -13,6 +13,8 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
+import { SharedModule } from 'app/shared/shared.module';
+
 import { PostingGridComponent } from './posting-grid/posting-grid.component';
 import { PostingRegisterComponent } from './posting-register/posting-register.component';
 import { PostingSearchComponent } from './posting-search/posting-search.component';
@@ -29,6 +31,7 @@ import { PostingSearchComponent } from './posting-search/posting-search.componen
     InputTextareaModule,
     InputTextModule,
     SelectButtonModule,
+    SharedModule,
     TooltipModule
   ],
   declarations: [
