@@ -6,40 +6,35 @@ import { ButtonModule } from 'primeng/components/button/button';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
-import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
+import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 
-import { CurrencyMaskModule } from 'ng2-currency-mask';
-
-import { PostingGridComponent } from './posting-grid/posting-grid.component';
-import { PostingRegisterComponent } from './posting-register/posting-register.component';
-import { PostingSearchComponent } from './posting-search/posting-search.component';
+import { PersonGridComponent } from './person-grid/person-grid.component';
+import { PersonRegisterComponent } from './person-register/person-register.component';
+import { PersonSearchComponent } from './person-search/person-search.component';
 
 @NgModule({
   imports: [
     ButtonModule,
-    CalendarModule,
     CommonModule,
-    CurrencyMaskModule,
     DataTableModule,
-    DropdownModule,
     FormsModule,
-    InputTextareaModule,
+    InputMaskModule,
     InputTextModule,
-    SelectButtonModule,
     TooltipModule
   ],
   declarations: [
-    PostingGridComponent,
-    PostingRegisterComponent,
-    PostingSearchComponent,
+    PersonGridComponent,
+    PersonRegisterComponent,
+    PersonSearchComponent
   ],
   exports: [
-    PostingRegisterComponent,
-    PostingSearchComponent,
+    PersonRegisterComponent,
+    PersonSearchComponent
   ]
 })
 
-export class PostingsModule { }
+export class PersonsModule { }
