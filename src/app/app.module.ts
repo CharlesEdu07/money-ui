@@ -7,6 +7,8 @@ import { PostingsModule } from './postings/postings.module';
 import { PersonsModule } from './persons/persons.module';
 
 import { AppComponent } from './app.component';
+import { HttpModule } from '@angular/http';
+import { PostingService } from './postings/posting.service';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,11 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
+    HttpModule,
     PersonsModule,
     PostingsModule,
   ],
-  providers: [],
+  providers: [PostingService],
   bootstrap: [AppComponent]
 })
 
