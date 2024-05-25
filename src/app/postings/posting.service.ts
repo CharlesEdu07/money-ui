@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Headers } from '@angular/http';
+import { Headers, Http, URLSearchParams } from '@angular/http';
+
+export interface PostingFilter {
+  postingDescription: string;
+}
 
 @Injectable()
 export class PostingService {
@@ -8,13 +11,18 @@ export class PostingService {
 
   constructor(private http: Http) { }
 
-  search(): Promise<any> {
+  async search(filter: PostingFilter): Promise<any> {
+    const params = new URLSearchParams();
     const headers = new Headers();
 
     headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOmFkbWlu');
 
-    return this.http.get(`${this.postingsUrl}?projection`, { headers: headers })
-      .toPromise()
-      .then(response => response.json().content);
+    if (filter.postingDescription) {
+      params.set('postingDescription', filter.postingDescription);
+    }
+
+    const response = await this.http.get(`${this.postingsUrl}?projection`, { headers: headers, search: params })
+      .toPromise();
+    return response.json().content;
   }
 }

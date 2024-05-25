@@ -8,6 +8,7 @@ import { PostingService } from '../posting.service';
 })
 export class PostingSearchComponent implements OnInit {
   postings = [];
+  postingDescription: string;
 
   constructor(private postingService: PostingService) { }
 
@@ -16,6 +17,6 @@ export class PostingSearchComponent implements OnInit {
   }
 
   search() {
-    this.postingService.search().then(postings => this.postings = postings);
+    this.postingService.search({ postingDescription: this.postingDescription }).then(postings => this.postings = postings);
   }
 }
