@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, URLSearchParams } from '@angular/http';
+import * as moment from 'moment';
 
 export interface PostingFilter {
   postingDescription: string;
+  dueDateFrom: Date;
+  dueDateTo: Date;
 }
 
 @Injectable()
@@ -19,6 +22,14 @@ export class PostingService {
 
     if (filter.postingDescription) {
       params.set('postingDescription', filter.postingDescription);
+    }
+
+    if (filter.dueDateFrom) {
+      params.set('dueDateFrom', moment(filter.dueDateFrom).format('YYYY-MM-DD'));
+    }
+
+    if (filter.dueDateTo) {
+      params.set('dueDateTo', moment(filter.dueDateTo).format('YYYY-MM-DD'));
     }
 
     const response = await this.http.get(`${this.postingsUrl}?projection`, { headers: headers, search: params })

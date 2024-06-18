@@ -9,6 +9,8 @@ import { PostingService } from '../posting.service';
 export class PostingSearchComponent implements OnInit {
   postings = [];
   postingDescription: string;
+  dueDateFrom: Date;
+  dueDateTo: Date;
 
   constructor(private postingService: PostingService) { }
 
@@ -17,6 +19,12 @@ export class PostingSearchComponent implements OnInit {
   }
 
   search() {
-    this.postingService.search({ postingDescription: this.postingDescription }).then(postings => this.postings = postings);
+    const filter = {
+      postingDescription: this.postingDescription,
+      dueDateFrom: this.dueDateFrom,
+      dueDateTo: this.dueDateTo
+    }
+
+    this.postingService.search(filter).then(postings => this.postings = postings);
   }
 }
