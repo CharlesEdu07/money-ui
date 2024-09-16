@@ -1,5 +1,5 @@
-<p-dataTable [value]="postings" [paginator]="true" [rows]="5" [responsive]="true"
-  emptyMessage="Nenhum lançamento encontrado">
+<p-dataTable [value]="postings" [paginator]="true" [responsive]="true" [rows]="postingFilter.itensPerPage" [lazy]="true"
+  [totalRecords]="totalRecords" (onLazyLoad)="onPaging($event)" emptyMessage="Nenhum lançamento encontrado">
   <p-column field="person" header="Pessoa"></p-column>
   <p-column field="postingDescription" header="Descrição"></p-column>
   <p-column field="dueDate" header="Vencimento" styleClass="col-date">

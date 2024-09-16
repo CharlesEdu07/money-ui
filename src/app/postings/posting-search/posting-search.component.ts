@@ -7,6 +7,7 @@ import { PostingFilter, PostingService } from '../posting.service';
   styleUrls: ['./posting-search.component.css']
 })
 export class PostingSearchComponent implements OnInit {
+  totalRecords = 0;
   postings = [];
 
   postingFilter = new PostingFilter();
@@ -17,7 +18,13 @@ export class PostingSearchComponent implements OnInit {
     this.search();
   }
 
-  search() {
-    this.postingService.search(this.postingFilter).then(result => { this.postings = result.postings });
+  search(page = 0) {
+    this.postingFilter.page = page;
+
+    this.postingService.search(this.postingFilter).then(result => { this.totalRecords = result.totalElements; this.postings = result.postings });
+  }
+
+  onPaging(page: any) {
+    this.search(page);
   }
 }

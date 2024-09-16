@@ -29,7 +29,8 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <app-posting-grid [postings]="postings"></app-posting-grid>
+      <app-posting-grid [totalRecords]="totalRecords" [postings]="postings" [postingFilter]="postingFilter"
+        (onPagingEmitter)="onPaging($event)"></app-posting-grid>
     </div>
 
     <div class="ui-g-12">
