@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, URLSearchParams } from '@angular/http';
 import * as moment from 'moment';
 
-export interface PostingFilter {
+export class PostingFilter {
   postingDescription: string;
   dueDateFrom: Date;
   dueDateTo: Date;
+  page = 0;
+  itensPerPage = 5;
 }
 
 @Injectable()
@@ -20,6 +22,9 @@ export class PostingService {
 
     headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOmFkbWlu');
 
+    params.set('page', filter.page.toString());
+    params.set('size', filter.itensPerPage.toString());
+
     if (filter.postingDescription) {
       params.set('postingDescription', filter.postingDescription);
     }
@@ -32,8 +37,18 @@ export class PostingService {
       params.set('dueDateTo', moment(filter.dueDateTo).format('YYYY-MM-DD'));
     }
 
-    const response = await this.http.get(`${this.postingsUrl}?projection`, { headers: headers, search: params })
-      .toPromise();
-    return response.json().content;
+    return await this.http.get(`${this.postingsUrl}?projection`, { headers: headers, search: params })
+      .toPromise()
+      .then(response => {
+        const responseJson = response.json();
+        const content = responseJson.content;
+
+        const result = {
+          postings: content,
+          totalElements: responseJson.totalElements
+        };
+
+        return result;
+      });
   }
 }

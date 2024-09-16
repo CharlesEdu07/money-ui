@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostingService } from '../posting.service';
+import { PostingFilter, PostingService } from '../posting.service';
 
 @Component({
   selector: 'app-posting-search',
@@ -8,9 +8,8 @@ import { PostingService } from '../posting.service';
 })
 export class PostingSearchComponent implements OnInit {
   postings = [];
-  postingDescription: string;
-  dueDateFrom: Date;
-  dueDateTo: Date;
+
+  postingFilter = new PostingFilter();
 
   constructor(private postingService: PostingService) { }
 
@@ -19,12 +18,6 @@ export class PostingSearchComponent implements OnInit {
   }
 
   search() {
-    const filter = {
-      postingDescription: this.postingDescription,
-      dueDateFrom: this.dueDateFrom,
-      dueDateTo: this.dueDateTo
-    }
-
-    this.postingService.search(filter).then(postings => this.postings = postings);
+    this.postingService.search(this.postingFilter).then(result => { this.postings = result.postings });
   }
 }
