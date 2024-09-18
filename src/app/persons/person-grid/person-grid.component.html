@@ -1,7 +1,8 @@
-<p-dataTable [value]="persons" [paginator]="true" [rows]="5" [responsive]="true">
+<p-dataTable [value]="persons" [paginator]="true" [responsive]="true" [rows]="personFilter.itensPerPage" [lazy]="true"
+  [totalRecords]="totalRecords" (onLazyLoad)="onPaging($event)" emptyMessage="Nenhuma pessoa encontrada">
   <p-column field="personName" header="Nome"></p-column>
-  <p-column field="city" header="Cidade"></p-column>
-  <p-column field="stateAddress" header="Estado"></p-column>
+  <p-column field="address.city" header="Cidade"></p-column>
+  <p-column field="address.addressState" header="Estado"></p-column>
   <p-column field="active" header="Status">
     <ng-template let-person="rowData" pTemplate="body">
       <a class="col-status-link" *ngIf="person.active" pTooltip="Inativar" tooltipPosition="top" href="#">Ativo</a>

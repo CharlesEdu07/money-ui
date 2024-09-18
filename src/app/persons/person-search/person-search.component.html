@@ -1,26 +1,29 @@
 <div class="container">
   <div class="ui-g">
-    <div class="ui-g-12">
-      <h1>Pessoas</h1>
-    </div>
+    <form autocomplete="off" (ngSubmit)="search()">
+      <div class="ui-g-12">
+        <h1>Pessoas</h1>
+      </div>
 
-    <div class="ui-g-12 ui-fluid">
-      <label for="personName">Nome</label>
-      <input pInputText type="text" id="personName">
-    </div>
+      <div class="ui-g-12 ui-fluid">
+        <label for="personName">Nome</label>
+        <input pInputText type="text" id="personName" name="personName" [(ngModel)]="personFilter.personName">
+      </div>
 
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar"></button>
-    </div>
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
   </div>
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <app-person-grid [persons]="persons"></app-person-grid>
+      <app-person-grid [totalRecords]="totalRecords" [persons]="persons" [personFilter]="personFilter"
+        (onPagingEmitter)="onPaging($event)"></app-person-grid>
     </div>
 
     <div class="ui-g-12">
-      <a pButton type="submit" label="Novo Lançamento"></a>
+      <a pButton type="submit" label="Nova pessoa"></a>
     </div>
   </div>
 </div>

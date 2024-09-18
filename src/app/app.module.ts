@@ -9,6 +9,7 @@ import { PersonsModule } from './persons/persons.module';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { PostingService } from './postings/posting.service';
+import { PersonService } from './persons/person.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { PostingService } from './postings/posting.service';
     PersonsModule,
     PostingsModule,
   ],
-  providers: [PostingService],
+  providers: [PostingService, PersonService],
   bootstrap: [AppComponent]
 })
 
