@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { PostingFilter } from '../posting.service';
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 
@@ -13,10 +13,19 @@ export class PostingGridComponent implements OnInit {
   @Input() postingFilter = new PostingFilter();
 
   @Output() onPagingEmitter = new EventEmitter();
+  @Output() onDeleteEmitter = new EventEmitter();
+
+  @ViewChild('postingTable') postingTable;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  delete(id: number) {
+    this.onDeleteEmitter.emit(id);
+
+    this.postingTable.first = 0;
   }
 
   onPaging(event: LazyLoadEvent) {

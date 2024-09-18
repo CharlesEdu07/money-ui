@@ -24,6 +24,14 @@ export class PostingSearchComponent implements OnInit {
     this.postingService.search(this.postingFilter).then(result => { this.totalRecords = result.totalElements; this.postings = result.postings });
   }
 
+  async delete(id: number): Promise<void> {
+    console.log('Delete', id);
+
+    return this.postingService.delete(id).then(() => {
+      console.log('Deleted');
+    });
+  }
+
   onPaging(page: any) {
     this.search(page);
   }

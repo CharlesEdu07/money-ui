@@ -51,4 +51,14 @@ export class PostingService {
         return result;
       });
   }
+
+  async delete(id: number): Promise<void> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOmFkbWlu');
+
+    return await this.http.delete(`${this.postingsUrl}/${id}`, { headers: headers })
+      .toPromise()
+      .then(() => null);
+  }
 }
