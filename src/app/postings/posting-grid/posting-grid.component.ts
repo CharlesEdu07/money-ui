@@ -12,6 +12,7 @@ export class PostingGridComponent implements OnInit {
   @Input() postings = [];
   @Input() postingFilter = new PostingFilter();
 
+  @Output() searchEmitter = new EventEmitter();
   @Output() onPagingEmitter = new EventEmitter();
   @Output() onDeleteEmitter = new EventEmitter();
 
@@ -25,7 +26,11 @@ export class PostingGridComponent implements OnInit {
   delete(id: number) {
     this.onDeleteEmitter.emit(id);
 
-    this.postingTable.first = 0;
+    if (this.postingTable.first === 0) {
+      this.searchEmitter.emit();
+    } else {
+      this.postingTable.first = 0;
+    }
   }
 
   onPaging(event: LazyLoadEvent) {

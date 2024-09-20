@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostingFilter, PostingService } from '../posting.service';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-posting-search',
@@ -12,7 +13,7 @@ export class PostingSearchComponent implements OnInit {
 
   postingFilter = new PostingFilter();
 
-  constructor(private postingService: PostingService) { }
+  constructor(private postingService: PostingService, private toastyService: ToastyService) { }
 
   ngOnInit() {
     this.search();
@@ -25,10 +26,10 @@ export class PostingSearchComponent implements OnInit {
   }
 
   async delete(id: number): Promise<void> {
-    console.log('Delete', id);
-
     return this.postingService.delete(id).then(() => {
-      console.log('Deleted');
+      this.search();
+
+      this.toastyService.success('Lançamento excluído com sucesso!');
     });
   }
 

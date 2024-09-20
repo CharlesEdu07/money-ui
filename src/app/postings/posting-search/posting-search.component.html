@@ -30,7 +30,8 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <app-posting-grid [totalRecords]="totalRecords" [postings]="postings" [postingFilter]="postingFilter"
-        (onDeleteEmitter)="delete($event)" (onPagingEmitter)="onPaging($event)"></app-posting-grid>
+        (searchEmitter)="search()" (onDeleteEmitter)="delete($event)"
+        (onPagingEmitter)="onPaging($event)"></app-posting-grid>
     </div>
 
     <div class="ui-g-12">
