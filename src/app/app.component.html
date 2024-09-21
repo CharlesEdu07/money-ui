@@ -6,4 +6,11 @@
 <!-- <app-posting-register></app-posting-register> -->
 <app-posting-search></app-posting-search>
 
+<p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #confirm>
+  <p-footer>
+    <button type="button" pButton icon="fa-times" label="Não" (click)="confirm.reject()"></button>
+    <button type="button" pButton icon="fa-check" label="Sim" (click)="confirm.accept()"></button>
+  </p-footer>
+</p-confirmDialog>
+
 <ng2-toasty></ng2-toasty>

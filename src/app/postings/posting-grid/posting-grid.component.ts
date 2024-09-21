@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { PostingFilter } from '../posting.service';
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @Component({
   selector: 'app-posting-grid',
@@ -18,12 +19,21 @@ export class PostingGridComponent implements OnInit {
 
   @ViewChild('postingTable') postingTable;
 
-  constructor() { }
+  constructor(private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
   }
 
   delete(id: number) {
+    this.confirmationService.confirm({
+      message: "Tem certeza que deseja excluir o lançamento?",
+      accept: () => {
+        this.confirmDelete(id);
+      }
+    });
+  }
+
+  confirmDelete(id: number) {
     this.onDeleteEmitter.emit(id);
 
     if (this.postingTable.first === 0) {
