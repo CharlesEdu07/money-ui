@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostingFilter, PostingService } from '../posting.service';
 import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from 'app/core/error-handler.service';
 
 @Component({
   selector: 'app-posting-search',
@@ -13,7 +14,9 @@ export class PostingSearchComponent implements OnInit {
 
   postingFilter = new PostingFilter();
 
-  constructor(private postingService: PostingService, private toastyService: ToastyService) { }
+  constructor(private errorHandlerService: ErrorHandlerService,
+    private postingService: PostingService,
+    private toastyService: ToastyService) { }
 
   ngOnInit() {
     this.search();
@@ -22,7 +25,11 @@ export class PostingSearchComponent implements OnInit {
   search(page = 0) {
     this.postingFilter.page = page;
 
-    this.postingService.search(this.postingFilter).then(result => { this.totalRecords = result.totalElements; this.postings = result.postings });
+    this.postingService.search(this.postingFilter)
+      .then(result => {
+        this.totalRecords = result.totalElements;
+        this.postings = result.postings
+      }).catch(error => this.errorHandlerService.handle(error));
   }
 
   async delete(id: number): Promise<void> {
@@ -30,7 +37,7 @@ export class PostingSearchComponent implements OnInit {
       this.search();
 
       this.toastyService.success('Lançamento excluído com sucesso!');
-    });
+    }).catch(error => this.errorHandlerService.handle(error));
   }
 
   onPaging(page: any) {
