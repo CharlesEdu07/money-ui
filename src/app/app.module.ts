@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
@@ -14,9 +14,9 @@ import { PersonService } from './persons/person.service';
 
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 
-import { ToastyModule } from 'ng2-toasty';
-
 import { ConfirmationService } from 'primeng/components/common/api';
+
+import { ToastyModule } from 'ng2-toasty';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,12 @@ import { ConfirmationService } from 'primeng/components/common/api';
     PostingsModule,
     ToastyModule.forRoot(),
   ],
-  providers: [PostingService, PersonService, ConfirmationService],
+  providers: [
+    PostingService,
+    PersonService,
+    ConfirmationService,
+    { provide: LOCALE_ID, useValue: 'pt' }
+  ],
   bootstrap: [AppComponent]
 })
 
