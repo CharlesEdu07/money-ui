@@ -17,7 +17,7 @@ export class PersonService {
     const params = new URLSearchParams();
     const headers = new Headers();
 
-    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOmFkbWlu');
+    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOjE3MTk4MA==');
 
     params.set('page', filter.page.toString());
     params.set('size', filter.itensPerPage.toString());
@@ -44,7 +44,7 @@ export class PersonService {
   async delete(id: number): Promise<void> {
     const headers = new Headers();
 
-    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOmFkbWlu');
+    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOjE3MTk4MA==');
 
     return await this.http.delete(`${this.personsUrl}/${id}`, { headers: headers })
       .toPromise()

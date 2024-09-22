@@ -9,8 +9,8 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
   styleUrls: ['./posting-search.component.css']
 })
 export class PostingSearchComponent implements OnInit {
-  totalRecords = 0;
   postings = [];
+  totalRecords = 0;
 
   postingFilter = new PostingFilter();
 

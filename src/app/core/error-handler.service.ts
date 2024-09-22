@@ -9,12 +9,28 @@ export class ErrorHandlerService {
   handle(errorResponse: any) {
     let message: string;
 
+    debugger;
+
     if (typeof errorResponse === 'string') {
       message = errorResponse;
+
+      debugger;
+    } else if (errorResponse instanceof Response && errorResponse.status >= 400 && errorResponse.status <= 499) {
+      let errors;
+
+      message = 'Ocorreu um erro ao processar a sua solicitação';
+
+      try {
+        errors = errorResponse.json();
+
+        message = errors[0].userMessage;
+      } catch (e) { }
+
+      console.error('Ocorreu um erro', errorResponse);
     } else {
       message = 'Erro ao processar serviço remoto. Tente novamente.';
 
-      console.log("Ocorreu um erro", errorResponse);
+      console.error('Ocorreu um erro', errorResponse);
     }
 
     this.toasty.error(message);
