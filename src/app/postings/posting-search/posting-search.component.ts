@@ -16,7 +16,8 @@ export class PostingSearchComponent implements OnInit {
 
   constructor(private errorHandlerService: ErrorHandlerService,
     private postingService: PostingService,
-    private toastyService: ToastyService) { }
+    private toastyService: ToastyService) {
+  }
 
   ngOnInit() {
     this.search();
@@ -25,11 +26,10 @@ export class PostingSearchComponent implements OnInit {
   search(page = 0) {
     this.postingFilter.page = page;
 
-    this.postingService.search(this.postingFilter)
-      .then(result => {
-        this.totalRecords = result.totalElements;
-        this.postings = result.postings
-      }).catch(error => this.errorHandlerService.handle(error));
+    this.postingService.search(this.postingFilter).then(result => {
+      this.totalRecords = result.totalElements;
+      this.postings = result.postings;
+    }).catch(error => this.errorHandlerService.handle(error));
   }
 
   async delete(id: number): Promise<void> {

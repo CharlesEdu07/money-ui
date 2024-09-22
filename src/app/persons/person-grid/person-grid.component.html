@@ -1,5 +1,5 @@
 <p-dataTable [value]="persons" [paginator]="true" [responsive]="true" [rows]="personFilter.itensPerPage" [lazy]="true"
-  [totalRecords]="totalRecords" (onLazyLoad)="onPaging($event)" emptyMessage="Nenhuma pessoa encontrada">
+  [totalRecords]="totalRecords" (onLazyLoad)="onPaging($event)" emptyMessage="Nenhuma pessoa encontrada" #personTable>
   <p-column field="personName" header="Nome"></p-column>
   <p-column field="address.city" header="Cidade"></p-column>
   <p-column field="address.addressState" header="Estado"></p-column>
@@ -10,9 +10,9 @@
     </ng-template>
   </p-column>
   <p-column styleClass="col-action">
-    <ng-template pTemplate="body">
+    <ng-template pTemplate="body" let-person="rowData">
       <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top" href=""></a>
-      <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" href=""></button>
+      <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="delete(person.id)"></button>
     </ng-template>
   </p-column>
 </p-dataTable>

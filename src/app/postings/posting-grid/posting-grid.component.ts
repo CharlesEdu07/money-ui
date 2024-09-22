@@ -17,7 +17,7 @@ export class PostingGridComponent implements OnInit {
   @Output() onPagingEmitter = new EventEmitter();
   @Output() onDeleteEmitter = new EventEmitter();
 
-  @ViewChild('postingTable') postingTable;
+  @ViewChild('postingTable') postingTable: any;
 
   constructor(private confirmationService: ConfirmationService) { }
 

@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { PersonFilter } from '../person.service';
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @Component({
   selector: 'app-person-grid',
@@ -12,11 +13,34 @@ export class PersonGridComponent implements OnInit {
   @Input() persons = [];
   @Input() personFilter = new PersonFilter();
 
+  @Output() searchEmitter = new EventEmitter();
   @Output() onPagingEmitter = new EventEmitter();
+  @Output() onDeleteEmitter = new EventEmitter();
 
-  constructor() { }
+  @ViewChild('personTable') personTable: any;
+
+  constructor(private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
+  }
+
+  delete(id: number) {
+    this.confirmationService.confirm({
+      message: "Tem certeza que deseja excluir o lançamento?",
+      accept: () => {
+        this.confirmDelete(id);
+      }
+    });
+  }
+
+  confirmDelete(id: number) {
+    this.onDeleteEmitter.emit(id);
+
+    if (this.personTable.first === 0) {
+      this.searchEmitter.emit();
+    } else {
+      this.personTable.first = 0;
+    }
   }
 
   onPaging(event: LazyLoadEvent) {
