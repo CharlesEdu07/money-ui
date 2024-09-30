@@ -16,12 +16,17 @@ export class PersonGridComponent implements OnInit {
   @Output() searchEmitter = new EventEmitter();
   @Output() onPagingEmitter = new EventEmitter();
   @Output() onDeleteEmitter = new EventEmitter();
+  @Output() changeStatusEmitter = new EventEmitter();
 
   @ViewChild('personTable') personTable: any;
 
   constructor(private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
+  }
+
+  changeStatus(id: number, active: boolean) {
+    this.changeStatusEmitter.emit({ id, active });
   }
 
   delete(id: number) {

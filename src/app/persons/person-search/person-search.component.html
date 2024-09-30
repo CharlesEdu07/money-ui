@@ -19,7 +19,7 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <app-person-grid [totalRecords]="totalRecords" [persons]="persons" [personFilter]="personFilter"
-        (onPagingEmitter)="onPaging($event)" (searchEmitter)="search()"
+        (onPagingEmitter)="onPaging($event)" (searchEmitter)="search()" (changeStatusEmitter)="changeStatus($event)"
         (onDeleteEmitter)="delete($event)"></app-person-grid>
     </div>
 

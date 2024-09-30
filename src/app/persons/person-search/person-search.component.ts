@@ -15,8 +15,8 @@ export class PersonSearchComponent implements OnInit {
   personFilter = new PersonFilter();
 
   constructor(private errorHandlerService: ErrorHandlerService,
-              private personService: PersonService,
-              private toastyService: ToastyService) {
+    private personService: PersonService,
+    private toastyService: ToastyService) {
   }
 
   ngOnInit(): void {
@@ -29,6 +29,14 @@ export class PersonSearchComponent implements OnInit {
     this.personService.search(this.personFilter).then(result => {
       this.totalRecords = result.totalElements;
       this.persons = result.persons;
+    }).catch(error => this.errorHandlerService.handle(error));
+  }
+
+  async changeStatus({ id, active }): Promise<void> {
+    return this.personService.changeStatus(id, active).then(() => {
+      this.search();
+
+      this.toastyService.success('Pessoa alterada com sucesso!');
     }).catch(error => this.errorHandlerService.handle(error));
   }
 

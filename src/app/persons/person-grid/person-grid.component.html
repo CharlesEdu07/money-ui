@@ -5,8 +5,8 @@
   <p-column field="address.addressState" header="Estado"></p-column>
   <p-column field="active" header="Status">
     <ng-template let-person="rowData" pTemplate="body">
-      <a class="col-status-link" *ngIf="person.active" pTooltip="Inativar" tooltipPosition="top" href="#">Ativo</a>
-      <a class="col-status-link" *ngIf="!person.active" pTooltip="Ativar" tooltipPosition="top" href="#">Inativo</a>
+      <a class="col-status-link" *ngIf="person.active" pTooltip="Inativar" tooltipPosition="top" href="javascript:;" (click)="changeStatus(person.id, false)">Ativo</a>
+      <a class="col-status-link" *ngIf="!person.active" pTooltip="Ativar" tooltipPosition="top" href="javascript:;" (click)="changeStatus(person.id, true)">Inativo</a>
     </ng-template>
   </p-column>
   <p-column styleClass="col-action">

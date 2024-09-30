@@ -9,12 +9,8 @@ export class ErrorHandlerService {
   handle(errorResponse: any) {
     let message: string;
 
-    debugger;
-
     if (typeof errorResponse === 'string') {
       message = errorResponse;
-
-      debugger;
     } else if (errorResponse instanceof Response && errorResponse.status >= 400 && errorResponse.status <= 499) {
       let errors;
 

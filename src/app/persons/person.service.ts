@@ -41,6 +41,17 @@ export class PersonService {
       });
   }
 
+  async changeStatus(id: number, active: boolean): Promise<void> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOjE3MTk4MA==');
+    headers.append('Content-Type', 'application/json');
+
+    return await this.http.put(`${this.personsUrl}/${id}/active`, active, { headers: headers })
+      .toPromise()
+      .then(() => null);
+  }
+
   async delete(id: number): Promise<void> {
     const headers = new Headers();
 
