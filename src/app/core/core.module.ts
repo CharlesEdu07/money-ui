@@ -12,6 +12,7 @@ import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdia
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 import { ToastyModule } from 'ng2-toasty';
+import { CategoryService } from 'app/categories/category.service';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { ToastyModule } from 'ng2-toasty';
     ConfirmDialogModule
   ],
   providers: [
+    CategoryService,
     ConfirmationService,
     ErrorHandlerService,
     PersonService,

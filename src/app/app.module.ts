@@ -8,14 +8,16 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PostingsModule } from './postings/postings.module';
 import { PersonsModule } from './persons/persons.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    CategoriesModule,
     CoreModule,
     HttpModule,
     PersonsModule,
