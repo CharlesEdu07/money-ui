@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { CategoryService } from 'app/categories/category.service';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
+import { PersonService } from 'app/persons/person.service';
 
 @Component({
   selector: 'app-posting-register',
@@ -14,20 +14,18 @@ export class PostingRegisterComponent implements OnInit {
     { label: 'Despesa', value: 'DESPESA' },
   ];
 
-  persons = [
-    { label: 'João', value: '1' },
-    { label: 'Maria', value: '2' },
-    { label: 'José', value: '3' },
-  ];
-
   categories: any[] = [];
+  persons: any[] = [];
 
-  constructor(private categoryService: CategoryService,
-    private errorHandler: ErrorHandlerService) {
+  constructor(
+    private categoryService: CategoryService,
+    private errorHandlerService: ErrorHandlerService,
+    private personService: PersonService) {
   }
 
   ngOnInit() {
     this.loadCategories();
+    this.loadPersons();
   }
 
   async loadCategories() {
@@ -36,7 +34,17 @@ export class PostingRegisterComponent implements OnInit {
 
       this.categories = savedCategories.map((category: { categoryName: any; id: any; }) => ({ label: category.categoryName, value: category.id }));
     } catch (error) {
-      return this.errorHandler.handle(error);
+      return this.errorHandlerService.handle(error);
+    }
+  }
+
+  async loadPersons() {
+    try {
+      const savedPersons = await this.personService.findAll();
+
+      this.persons = savedPersons.map((person: { personName: any; id: any; }) => ({ label: person.personName, value: person.id }));
+    } catch (error) {
+      return this.errorHandlerService.handle(error);
     }
   }
 }

@@ -13,6 +13,20 @@ export class PersonService {
 
   constructor(private http: Http) { }
 
+  async findAll(): Promise<any> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOjE3MTk4MA==');
+
+    return await this.http.get(`${this.personsUrl}`, { headers: headers })
+      .toPromise()
+      .then(response => {
+        const result = response.json().content;
+
+        return result;
+      });
+  }
+
   async search(filter: PersonFilter): Promise<any> {
     const params = new URLSearchParams();
     const headers = new Headers();
