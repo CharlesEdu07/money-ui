@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CategoryService } from 'app/categories/category.service';
+import { ErrorHandlerService } from 'app/core/error-handler.service';
 
 @Component({
   selector: 'app-posting-register',
@@ -12,23 +14,25 @@ export class PostingRegisterComponent implements OnInit {
     { label: 'Despesa', value: 'DESPESA' },
   ];
 
-  categories = [
-    { label: 'Alimentação', value: 'ALIMENTACAO' },
-    { label: 'Transporte', value: 'TRANSPORTE' },
-  ];
-
   persons = [
     { label: 'João', value: '1' },
     { label: 'Maria', value: '2' },
     { label: 'José', value: '3' },
   ];
 
-  constructor() { }
+  categories: any[] = [];
 
-  ngOnInit() {
+  constructor(private categoryService: CategoryService,
+    private errorHandler: ErrorHandlerService) {
   }
 
-  save(form: NgForm) {
-    console.log(form.value);
+  ngOnInit() {
+    this.loadCategories();
+  }
+
+  loadCategories() {
+    return this.categoryService.findAll().then(result => {
+      this.categories = result.map(category => ({ label: category.categoryName, value: category.id }));
+    }).catch(error => this.errorHandler.handle(error));
   }
 }
