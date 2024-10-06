@@ -30,9 +30,13 @@ export class PostingRegisterComponent implements OnInit {
     this.loadCategories();
   }
 
-  loadCategories() {
-    return this.categoryService.findAll().then(result => {
-      this.categories = result.map(category => ({ label: category.categoryName, value: category.id }));
-    }).catch(error => this.errorHandler.handle(error));
+  async loadCategories() {
+    try {
+      const savedCategories = await this.categoryService.findAll();
+
+      this.categories = savedCategories.map((category: { categoryName: any; id: any; }) => ({ label: category.categoryName, value: category.id }));
+    } catch (error) {
+      return this.errorHandler.handle(error);
+    }
   }
 }
