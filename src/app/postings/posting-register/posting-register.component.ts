@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { CategoryService } from 'app/categories/category.service';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
+import { Posting } from 'app/core/model';
 import { PersonService } from 'app/persons/person.service';
 
 @Component({
@@ -17,6 +19,8 @@ export class PostingRegisterComponent implements OnInit {
   categories: any[] = [];
   persons: any[] = [];
 
+  posting = new Posting();
+
   constructor(
     private categoryService: CategoryService,
     private errorHandlerService: ErrorHandlerService,
@@ -26,6 +30,11 @@ export class PostingRegisterComponent implements OnInit {
   ngOnInit() {
     this.loadCategories();
     this.loadPersons();
+  }
+
+  save(form: FormControl) {
+    console.log(this.posting);
+    console.log(form.value);
   }
 
   async loadCategories() {
