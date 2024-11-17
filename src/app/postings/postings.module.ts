@@ -18,6 +18,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { PostingGridComponent } from './posting-grid/posting-grid.component';
 import { PostingRegisterComponent } from './posting-register/posting-register.component';
 import { PostingSearchComponent } from './posting-search/posting-search.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { PostingSearchComponent } from './posting-search/posting-search.componen
     FormsModule,
     InputTextareaModule,
     InputTextModule,
+    RouterModule,
     SelectButtonModule,
     SharedModule,
     TooltipModule

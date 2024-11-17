@@ -13,18 +13,20 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 
 import { ToastyModule } from 'ng2-toasty';
 import { CategoryService } from 'app/categories/category.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     ConfirmDialogModule,
+    RouterModule,
     ToastyModule.forRoot(),
   ],
   declarations: [NavbarComponent],
   exports: [
+    ConfirmDialogModule,
     NavbarComponent,
-    ToastyModule,
-    ConfirmDialogModule
+    ToastyModule
   ],
   providers: [
     CategoryService,

@@ -13,11 +13,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostingSearchComponent } from './postings/posting-search/posting-search.component';
 import { PostingRegisterComponent } from './postings/posting-register/posting-register.component';
 import { PersonSearchComponent } from './persons/person-search/person-search.component';
+import { PersonRegisterComponent } from './persons/person-register/person-register.component';
 
 const routes: Routes = [
   { path: 'postings', component: PostingSearchComponent },
-  { path: 'postings/register', component: PostingRegisterComponent },
-  { path: 'persons', component: PersonSearchComponent }
+  { path: 'posting/register', component: PostingRegisterComponent },
+  { path: 'persons', component: PersonSearchComponent },
+  { path: 'person/register', component: PersonRegisterComponent }
 ];
 
 @NgModule({
