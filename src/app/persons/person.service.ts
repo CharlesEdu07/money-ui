@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, URLSearchParams } from '@angular/http';
+import { Person } from 'app/core/model';
 
 export class PersonFilter {
   personName: string;
@@ -12,6 +13,17 @@ export class PersonService {
   personsUrl = 'http://localhost:8080/persons';
 
   constructor(private http: Http) { }
+
+  async save(person: Person): Promise<Person> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOjE3MTk4MA==');
+    headers.append('Content-Type', 'application/json');
+
+    return await this.http.post(this.personsUrl, JSON.stringify(person), { headers: headers })
+      .toPromise()
+      .then(response => response.json());
+  }
 
   async findAll(): Promise<any> {
     const headers = new Headers();

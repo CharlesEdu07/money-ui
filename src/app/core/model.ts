@@ -1,9 +1,22 @@
-export class Person {
-  id: number;
+export class Address {
+  street: string;
+  addressNumber: string;
+  complement: string;
+  district: string;
+  zipCode: string;
+  city: string;
+  addressState: string;
 }
 
 export class Cateogry {
   id: number;
+}
+
+export class Person {
+  id: number;
+  personName: string;
+  active: boolean;
+  address: Address = new Address();
 }
 
 export class Posting {

@@ -37,8 +37,6 @@ export class PostingRegisterComponent implements OnInit {
   }
 
   save(form: FormControl) {
-    console.log(this.posting);
-
     this.postingService.save(this.posting)
       .then(() => {
         this.toastyService.success('Cadastro realizado com sucesso!');

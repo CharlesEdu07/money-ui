@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
+import { Person } from 'app/core/model';
+import { PersonService } from '../person.service';
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from 'app/core/error-handler.service';
 
 @Component({
   selector: 'app-person-register',
@@ -17,18 +21,27 @@ export class PersonRegisterComponent implements OnInit {
     { label: 'Transporte', value: 'TRANSPORTE' },
   ];
 
-  persons = [
-    { label: 'João', value: '1' },
-    { label: 'Maria', value: '2' },
-    { label: 'José', value: '3' },
-  ];
+  person = new Person();
 
-  constructor() { }
+  constructor(private errorHandlerService: ErrorHandlerService,
+              private personService: PersonService,
+              private toastyService: ToastyService) {
+  }
 
   ngOnInit() {
   }
 
-  save(form: NgForm) {
-    console.log(form.value);
+  save(form: FormControl) {
+    this.person.active = true;
+
+    this.personService.save(this.person)
+      .then(() => {
+        this.toastyService.success('Cadastro realizado com sucesso!');
+
+        form.reset();
+
+        this.person = new Person();
+      })
+      .catch(error => this.errorHandlerService.handle(error));
   }
 }
