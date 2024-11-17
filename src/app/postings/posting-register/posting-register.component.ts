@@ -4,6 +4,8 @@ import { CategoryService } from 'app/categories/category.service';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
 import { Posting } from 'app/core/model';
 import { PersonService } from 'app/persons/person.service';
+import { PostingService } from '../posting.service';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-posting-register',
@@ -24,7 +26,9 @@ export class PostingRegisterComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private errorHandlerService: ErrorHandlerService,
-    private personService: PersonService) {
+    private personService: PersonService,
+    private postingService: PostingService,
+    private toastyService: ToastyService) {
   }
 
   ngOnInit() {
@@ -34,7 +38,16 @@ export class PostingRegisterComponent implements OnInit {
 
   save(form: FormControl) {
     console.log(this.posting);
-    console.log(form.value);
+
+    this.postingService.save(this.posting)
+      .then(() => {
+        this.toastyService.success('Cadastro realizado com sucesso!');
+
+        form.reset();
+
+        this.posting = new Posting();
+      })
+      .catch(error => this.errorHandlerService.handle(error));
   }
 
   async loadCategories() {

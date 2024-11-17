@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, URLSearchParams } from '@angular/http';
+import { Posting } from 'app/core/model';
 import * as moment from 'moment';
 
 export class PostingFilter {
@@ -50,6 +51,17 @@ export class PostingService {
 
         return result;
       });
+  }
+
+  async save(posting: Posting): Promise<Posting> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOjE3MTk4MA==');
+    headers.append('Content-Type', 'application/json');
+
+    return await this.http.post(this.postingsUrl, JSON.stringify(posting), { headers: headers })
+      .toPromise()
+      .then(response => response.json());
   }
 
   async delete(id: number): Promise<void> {

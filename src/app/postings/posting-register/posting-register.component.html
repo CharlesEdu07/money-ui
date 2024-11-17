@@ -43,13 +43,13 @@
       <div class="ui-fluid ui-g-12 ui-md-6">
         <label for="">Categoria</label>
         <p-dropdown name="category" [options]="categories" [autoWidth]="false" placeholder="Selecione"
-          [(ngModel)]="posting.category" #category="ngModel" required></p-dropdown>
+          [(ngModel)]="posting.category.id" #category="ngModel" required></p-dropdown>
       </div>
 
       <div class="ui-fluid ui-g-12 ui-md-6">
         <label for="">Pessoa</label>
         <p-dropdown name="person" [options]="persons" [autoWidth]="false" [filter]="true" placeholder="Selecione"
-          [(ngModel)]="posting.person" #person="ngModel" required></p-dropdown>
+          [(ngModel)]="posting.person.id" #person="ngModel" required></p-dropdown>
       </div>
 
       <div class="ui-fluid ui-g-12">
