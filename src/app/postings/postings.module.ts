@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { ButtonModule } from 'primeng/components/button/button';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
@@ -15,10 +16,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 import { SharedModule } from 'app/shared/shared.module';
 
-import { PostingGridComponent } from './posting-grid/posting-grid.component';
 import { PostingRegisterComponent } from './posting-register/posting-register.component';
 import { PostingSearchComponent } from './posting-search/posting-search.component';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -37,7 +36,6 @@ import { RouterModule } from '@angular/router';
     TooltipModule
   ],
   declarations: [
-    PostingGridComponent,
     PostingRegisterComponent,
     PostingSearchComponent,
   ],

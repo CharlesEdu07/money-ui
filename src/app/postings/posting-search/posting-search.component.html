@@ -29,9 +29,38 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <app-posting-grid [totalRecords]="totalRecords" [postings]="postings" [postingFilter]="postingFilter"
-        (onPagingEmitter)="onPaging($event)" (searchEmitter)="search()"
-        (onDeleteEmitter)="delete($event)"></app-posting-grid>
+      <p-dataTable [value]="postings" [paginator]="true" [responsive]="true" [rows]="postingFilter.itensPerPage"
+        [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="onPaging($event)"
+        emptyMessage="Nenhum lançamento encontrado" #postingTable>
+        <p-column field="person" header="Pessoa"></p-column>
+        <p-column field="postingDescription" header="Descrição"></p-column>
+
+        <p-column field="dueDate" header="Vencimento" styleClass="col-date">
+          <ng-template let-post="rowData" pTemplate="body">
+            <span>{{ post.dueDate | date:'dd/MM/y' }}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="paymentDate" header="Pagamento" styleClass="col-date">
+          <ng-template let-post="rowData" pTemplate="body">
+            <span>{{ post.paymentDate | date:'dd/MM/y' }}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="postingValue" header="Valor" styleClass="col-postingValue">
+          <ng-template let-post="rowData" pTemplate="body">
+            <span [style.color]="post.postingType === 'DESPESA' ? 'red' : 'blue'">{{ post.postingValue |
+              currency:'BRL':true:'1.2-2' }}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column styleClass="col-action">
+          <ng-template pTemplate="body" let-post="rowData">
+            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top" href=""></a>
+            <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="delete(post)"></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
     </div>
 
     <div class="ui-g-12">

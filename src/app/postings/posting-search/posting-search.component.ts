@@ -1,26 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostingFilter, PostingService } from '../posting.service';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
+import { Posting } from 'app/core/model';
 
 @Component({
   selector: 'app-posting-search',
   templateUrl: './posting-search.component.html',
   styleUrls: ['./posting-search.component.css']
 })
-export class PostingSearchComponent implements OnInit {
+export class PostingSearchComponent {
+  @ViewChild('postingTable') grid;
+
   postings = [];
   totalRecords = 0;
 
   postingFilter = new PostingFilter();
 
-  constructor(private errorHandlerService: ErrorHandlerService,
+  constructor(private confirmationService: ConfirmationService,
+    private errorHandlerService: ErrorHandlerService,
     private postingService: PostingService,
     private toastyService: ToastyService) {
-  }
-
-  ngOnInit() {
-    this.search();
   }
 
   search(page = 0) {
@@ -32,15 +34,30 @@ export class PostingSearchComponent implements OnInit {
     }).catch(error => this.errorHandlerService.handle(error));
   }
 
-  async delete(id: number): Promise<void> {
-    return this.postingService.delete(id).then(() => {
-      this.search();
+  onPaging(event: LazyLoadEvent) {
+    const page = event.first / event.rows;
+
+    this.search(page);
+  }
+
+  confirmDelete(posting: Posting) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.delete(posting);
+      }
+    });
+  }
+
+  async delete(posting: Posting): Promise<void> {
+    return this.postingService.delete(posting.id).then(() => {
+      if (this.grid.first === 0) {
+        this.search();
+      } else {
+        this.grid.first = 0;
+      }
 
       this.toastyService.success('Lançamento excluído com sucesso!');
     }).catch(error => this.errorHandlerService.handle(error));
-  }
-
-  onPaging(page: any) {
-    this.search(page);
   }
 }

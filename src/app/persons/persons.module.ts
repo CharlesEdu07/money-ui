@@ -10,7 +10,6 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 
 import { SharedModule } from 'app/shared/shared.module';
 
-import { PersonGridComponent } from './person-grid/person-grid.component';
 import { PersonRegisterComponent } from './person-register/person-register.component';
 import { PersonSearchComponent } from './person-search/person-search.component';
 import { RouterModule } from '@angular/router';
@@ -28,7 +27,6 @@ import { RouterModule } from '@angular/router';
     TooltipModule
   ],
   declarations: [
-    PersonGridComponent,
     PersonRegisterComponent,
     PersonSearchComponent
   ],
