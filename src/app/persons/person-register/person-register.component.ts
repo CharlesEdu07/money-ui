@@ -11,16 +11,6 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
   styleUrls: ['./person-register.component.css']
 })
 export class PersonRegisterComponent implements OnInit {
-  postingTypes = [
-    { label: 'Receita', value: 'RECEITA' },
-    { label: 'Despesa', value: 'DESPESA' },
-  ];
-
-  categories = [
-    { label: 'Alimentação', value: 'ALIMENTACAO' },
-    { label: 'Transporte', value: 'TRANSPORTE' },
-  ];
-
   person = new Person();
 
   constructor(private errorHandlerService: ErrorHandlerService,
