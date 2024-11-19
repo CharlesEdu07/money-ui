@@ -53,6 +53,17 @@ export class PostingService {
       });
   }
 
+  async findById(id: number): Promise<Posting> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOjE3MTk4MA==');
+    headers.append('Content-Type', 'application/json');
+
+    return await this.http.get(`${this.postingsUrl}/${id}`, { headers: headers })
+      .toPromise()
+      .then(response => response.json());
+  }
+
   async save(posting: Posting): Promise<Posting> {
     const headers = new Headers();
 
@@ -72,5 +83,24 @@ export class PostingService {
     return await this.http.delete(`${this.postingsUrl}/${id}`, { headers: headers })
       .toPromise()
       .then(() => null);
+  }
+
+  async update(id: number, posting: Posting): Promise<Posting> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic YWRtaW5AbW9uZXlhcGkuY29tOjE3MTk4MA==');
+    headers.append('Content-Type', 'application/json');
+
+    return await this.http.put(`${this.postingsUrl}/${id}`, JSON.stringify(posting), { headers: headers })
+      .toPromise()
+      .then(response => response.json());
+  }
+
+  convertStringToDate(posting: Posting[]) {
+    for (const p of posting) {
+      p.dueDate = moment(p.dueDate, 'YYYY-MM-DD').toDate();
+    }
+
+    return posting;
   }
 }
