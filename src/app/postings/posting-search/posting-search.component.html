@@ -56,7 +56,8 @@
 
         <p-column styleClass="col-action">
           <ng-template pTemplate="body" let-post="rowData">
-            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top" href=""></a>
+            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
+              [routerLink]="['/postings', post.id]"></a>
             <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="delete(post)"></button>
           </ng-template>
         </p-column>
@@ -64,7 +65,7 @@
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Novo lançamento" routerLink="/posting/register"></a>
+      <a pButton label="Novo lançamento" routerLink="/postings/register"></a>
     </div>
   </div>
 </div>

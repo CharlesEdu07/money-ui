@@ -6,6 +6,7 @@ import { Posting } from 'app/core/model';
 import { PersonService } from 'app/persons/person.service';
 import { PostingService } from '../posting.service';
 import { ToastyService } from 'ng2-toasty';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-posting-register',
@@ -28,10 +29,13 @@ export class PostingRegisterComponent implements OnInit {
     private errorHandlerService: ErrorHandlerService,
     private personService: PersonService,
     private postingService: PostingService,
+    private activatedRoute: ActivatedRoute,
     private toastyService: ToastyService) {
   }
 
   ngOnInit() {
+    console.log(this.activatedRoute.snapshot.params['id']);
+
     this.loadCategories();
     this.loadPersons();
   }

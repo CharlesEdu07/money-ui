@@ -17,9 +17,10 @@ import { PersonRegisterComponent } from './persons/person-register/person-regist
 
 const routes: Routes = [
   { path: 'postings', component: PostingSearchComponent },
-  { path: 'posting/register', component: PostingRegisterComponent },
+  { path: 'postings/register', component: PostingRegisterComponent },
+  { path: 'postings/:id', component: PostingRegisterComponent },
   { path: 'persons', component: PersonSearchComponent },
-  { path: 'person/register', component: PersonRegisterComponent }
+  { path: 'persons/register', component: PersonRegisterComponent }
 ];
 
 @NgModule({
