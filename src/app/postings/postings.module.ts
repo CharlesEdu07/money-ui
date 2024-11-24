@@ -39,10 +39,7 @@ import { PostingSearchComponent } from './posting-search/posting-search.componen
     PostingRegisterComponent,
     PostingSearchComponent,
   ],
-  exports: [
-    PostingRegisterComponent,
-    PostingSearchComponent,
-  ]
+  exports: []
 })
 
 export class PostingsModule { }

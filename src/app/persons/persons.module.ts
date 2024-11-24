@@ -30,10 +30,7 @@ import { RouterModule } from '@angular/router';
     PersonRegisterComponent,
     PersonSearchComponent
   ],
-  exports: [
-    PersonRegisterComponent,
-    PersonSearchComponent
-  ]
+  exports: []
 })
 
 export class PersonsModule { }

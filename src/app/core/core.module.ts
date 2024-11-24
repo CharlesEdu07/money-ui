@@ -14,6 +14,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 import { ToastyModule } from 'ng2-toasty';
 import { CategoryService } from 'app/categories/category.service';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     ToastyModule.forRoot(),
   ],
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PageNotFoundComponent],
   exports: [
     ConfirmDialogModule,
     NavbarComponent,
