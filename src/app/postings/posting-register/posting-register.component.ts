@@ -6,7 +6,7 @@ import { Posting } from 'app/core/model';
 import { PersonService } from 'app/persons/person.service';
 import { PostingService } from '../posting.service';
 import { ToastyService } from 'ng2-toasty';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-posting-register',
@@ -27,11 +27,12 @@ export class PostingRegisterComponent implements OnInit {
   posting = new Posting();
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService,
     private errorHandlerService: ErrorHandlerService,
     private personService: PersonService,
     private postingService: PostingService,
-    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private toastyService: ToastyService) {
   }
 
@@ -46,6 +47,10 @@ export class PostingRegisterComponent implements OnInit {
     this.loadPersons();
   }
 
+  get isEditing() {
+    return Boolean(this.id);
+  }
+
   save(form: FormControl) {
     if (this.isEditing) {
       this.updatePosting(form);
@@ -56,12 +61,10 @@ export class PostingRegisterComponent implements OnInit {
 
   createPosting(form: FormControl) {
     this.postingService.save(this.posting)
-      .then(() => {
+      .then(createdPostings => {
         this.toastyService.success('Lançamento realizado com sucesso!');
 
-        form.reset();
-
-        this.posting = new Posting();
+        this.router.navigate(['/postings', createdPostings.id]);
       })
       .catch(error => this.errorHandlerService.handle(error));
   }
@@ -84,7 +87,7 @@ export class PostingRegisterComponent implements OnInit {
       .catch(error => this.errorHandlerService.handle(error));
   }
 
-  loadPosting(id: number) {
+  async loadPosting(id: number) {
     this.postingService.findById(id).then(posting => {
       this.posting = posting;
 
@@ -118,7 +121,13 @@ export class PostingRegisterComponent implements OnInit {
     }
   }
 
-  get isEditing() {
-    return Boolean(this.id);
+  newPosting(form: FormControl) {
+    form.reset();
+
+    setTimeout(function () {
+      this.posting = new Posting();
+    }.bind(this), 1);
+
+    this.router.navigate(['/postings/register']);
   }
 }
