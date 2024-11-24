@@ -2,7 +2,7 @@
   <form autocomplete="off" #postingForm="ngForm" (ngSubmit)="save(postingForm)">
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Novo lançamento</h1>
+        <h1>{{ isEditing ? 'Editar' : 'Novo' }} lançamento</h1>
       </div>
 
       <div class="ui-g-12">

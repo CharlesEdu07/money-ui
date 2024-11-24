@@ -14,6 +14,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./posting-register.component.css']
 })
 export class PostingRegisterComponent implements OnInit {
+  id: number;
+
   postingTypes = [
     { label: 'Receita', value: 'RECEITA' },
     { label: 'Despesa', value: 'DESPESA' },
@@ -34,7 +36,11 @@ export class PostingRegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.activatedRoute.snapshot.params['id']);
+    this.id = this.activatedRoute.snapshot.params['id'];
+
+    if (this.id) {
+      this.loadPosting(this.id);
+    }
 
     this.loadCategories();
     this.loadPersons();
@@ -50,6 +56,20 @@ export class PostingRegisterComponent implements OnInit {
         this.posting = new Posting();
       })
       .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  loadPosting(id: number) {
+    this.postingService.findById(id).then(posting => {
+      this.posting = posting;
+
+      if (this.posting.dueDate) {
+        this.posting.dueDate = new Date(`${this.posting.dueDate}T00:00:00`);
+      }
+
+      if (this.posting.paymentDate) {
+        this.posting.paymentDate = new Date(`${this.posting.paymentDate}T00:00:00`);
+      }
+    }).catch(error => this.errorHandlerService.handle(error));
   }
 
   async loadCategories() {
@@ -70,5 +90,9 @@ export class PostingRegisterComponent implements OnInit {
     } catch (error) {
       return this.errorHandlerService.handle(error);
     }
+  }
+
+  get isEditing() {
+    return Boolean(this.id);
   }
 }
