@@ -7,6 +7,7 @@ import { PersonService } from 'app/persons/person.service';
 import { PostingService } from '../posting.service';
 import { ToastyService } from 'ng2-toasty';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-posting-register',
@@ -33,11 +34,14 @@ export class PostingRegisterComponent implements OnInit {
     private personService: PersonService,
     private postingService: PostingService,
     private router: Router,
+    private title: Title,
     private toastyService: ToastyService) {
   }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
+
+    this.title.setTitle('Novo lançamento');
 
     if (this.id) {
       this.loadPosting(this.id);
@@ -83,6 +87,8 @@ export class PostingRegisterComponent implements OnInit {
         }
 
         this.toastyService.success('Lançamento alterado com sucesso!');
+
+        this.updateEditTitle();
       })
       .catch(error => this.errorHandlerService.handle(error));
   }
@@ -98,6 +104,8 @@ export class PostingRegisterComponent implements OnInit {
       if (this.posting.paymentDate) {
         this.posting.paymentDate = new Date(`${this.posting.paymentDate}T00:00:00`);
       }
+
+      this.updateEditTitle();
     }).catch(error => this.errorHandlerService.handle(error));
   }
 
@@ -129,5 +137,9 @@ export class PostingRegisterComponent implements OnInit {
     }.bind(this), 1);
 
     this.router.navigate(['/postings/register']);
+  }
+
+  updateEditTitle() {
+    this.title.setTitle(`Editar lançamento: ${this.posting.postingDescription}`);
   }
 }

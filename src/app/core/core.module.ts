@@ -15,6 +15,7 @@ import { ToastyModule } from 'ng2-toasty';
 import { CategoryService } from 'app/categories/category.service';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found.component';
+import { Title } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
     ErrorHandlerService,
     PersonService,
     PostingService,
+    Title,
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })

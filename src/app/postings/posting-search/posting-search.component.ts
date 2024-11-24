@@ -5,13 +5,14 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 import { Posting } from 'app/core/model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-posting-search',
   templateUrl: './posting-search.component.html',
   styleUrls: ['./posting-search.component.css']
 })
-export class PostingSearchComponent {
+export class PostingSearchComponent implements OnInit {
   @ViewChild('postingTable') grid;
 
   postings = [];
@@ -22,7 +23,12 @@ export class PostingSearchComponent {
   constructor(private confirmationService: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
     private postingService: PostingService,
+    private title: Title,
     private toastyService: ToastyService) {
+  }
+
+  ngOnInit(): void {
+    this.title.setTitle('Pesquisa de lançamentos');
   }
 
   search(page = 0) {
