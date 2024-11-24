@@ -47,13 +47,39 @@ export class PostingRegisterComponent implements OnInit {
   }
 
   save(form: FormControl) {
+    if (this.isEditing) {
+      this.updatePosting(form);
+    } else {
+      this.createPosting(form);
+    }
+  }
+
+  createPosting(form: FormControl) {
     this.postingService.save(this.posting)
       .then(() => {
-        this.toastyService.success('Cadastro realizado com sucesso!');
+        this.toastyService.success('Lançamento realizado com sucesso!');
 
         form.reset();
 
         this.posting = new Posting();
+      })
+      .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  updatePosting(form: FormControl) {
+    this.postingService.update(this.id, this.posting)
+      .then(posting => {
+        this.posting = posting;
+
+        if (this.posting.dueDate) {
+          this.posting.dueDate = new Date(`${this.posting.dueDate}T00:00:00`);
+        }
+
+        if (this.posting.paymentDate) {
+          this.posting.paymentDate = new Date(`${this.posting.paymentDate}T00:00:00`);
+        }
+
+        this.toastyService.success('Lançamento alterado com sucesso!');
       })
       .catch(error => this.errorHandlerService.handle(error));
   }

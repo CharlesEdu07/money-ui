@@ -26,7 +26,7 @@ export class Posting {
   dueDate: Date;
   paymentDate: Date;
   postingValue: number;
-  observation: string;
+  note: string;
   person: Person = new Person();
   category: Cateogry = new Cateogry();
 }
