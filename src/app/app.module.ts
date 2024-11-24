@@ -16,9 +16,12 @@ import { PersonSearchComponent } from './persons/person-search/person-search.com
 import { PersonRegisterComponent } from './persons/person-register/person-register.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/postings', pathMatch: 'full' },
+
   { path: 'postings', component: PostingSearchComponent },
   { path: 'postings/register', component: PostingRegisterComponent },
   { path: 'postings/:id', component: PostingRegisterComponent },
+
   { path: 'persons', component: PersonSearchComponent },
   { path: 'persons/register', component: PersonRegisterComponent }
 ];
